@@ -27,7 +27,6 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 class SpringboottestApplicationTests {
 
-
 	@MockBean
 	CuentaRepository cuentaRepository;
 
@@ -71,10 +70,10 @@ class SpringboottestApplicationTests {
 
 		verify(cuentaRepository, times(3)).findById(1L);
 		verify(cuentaRepository, times(3)).findById(2L);
-		verify(cuentaRepository, times(2)).update(any(Cuenta.class));
+		verify(cuentaRepository, times(2)).save(any(Cuenta.class));
 
 		verify(bancoRepository, times(2)).findById(1L);
-		verify(bancoRepository).update(any(Banco.class));
+		verify(bancoRepository).save(any(Banco.class));
 
 		verify(cuentaRepository, times(6)).findById(anyLong());
 		verify(cuentaRepository, never()).findAll();
@@ -106,10 +105,10 @@ class SpringboottestApplicationTests {
 
 		verify(cuentaRepository, times(3)).findById(1L);
 		verify(cuentaRepository, times(2)).findById(2L);
-		verify(cuentaRepository, never()).update(any(Cuenta.class));
+		verify(cuentaRepository, never()).save(any(Cuenta.class));
 
 		verify(bancoRepository, times(1)).findById(1L);
-		verify(bancoRepository, never()).update(any(Banco.class));
+		verify(bancoRepository, never()).save(any(Banco.class));
 
 		verify(cuentaRepository, times(5)).findById(anyLong());
 		verify(cuentaRepository, never()).findAll();
